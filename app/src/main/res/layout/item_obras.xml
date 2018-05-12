@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:id="@+id/item_obra"
+    android:background="@drawable/efecto_ripple"
     android:layout_height="wrap_content">
 
     <LinearLayout
