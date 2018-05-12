@@ -15,7 +15,8 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String TABLA_INSUMOS = "insumos";
     public static final String TABLA_OBRAS = "obras";
     public static final String TABLA_INSUMO_PRODUCTO = "insumo_producto";
-    public static final String TABLA_PRESUPUESTOS = "insumo_producto";
+    public static final String TABLA_PRODUCTO_OBRA = "producto_obra";
+    public static final String TABLA_PRESUPUESTOS = "presupuestos";
 
     public static final String ID = "id";
     public static final String NOMBRE = "nombre";
@@ -27,9 +28,10 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String ID_PRODUCTO = "id_producto";
     public static final String ID_OBRA = "id_obra";
     public static final String CANTIDAD_INSUMO = "cantidad_insumo";
+    public static final String CANTIDAD_PRODUCTO = "cantidad_producto";
     public static final String PRECIO = "precio";
     public static final String TIPO = "tipo";
-    public static final String FECHA = "tipo";
+    public static final String FECHA = "fecha";
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -65,6 +67,13 @@ public class DBHelper extends SQLiteOpenHelper {
                 "FOREIGN KEY ("+ID_INSUMO+") REFERENCES "+TABLA_INSUMOS+"("+ID+"), " +
                 "FOREIGN KEY ("+ID_PRODUCTO+") REFERENCES "+TABLA_PRODUCTOS+"("+ID+") )";
 
+        String CREAR_TABLA_PRODUCTO_OBRA = "CREATE TABLE " + TABLA_PRODUCTO_OBRA +" ( "+
+                ID_PRODUCTO + " INTEGER NOT NULL, " +
+                ID_OBRA + " INTEGER NOT NULL, " +
+                CANTIDAD_PRODUCTO + " REAL NOT NULL, " +
+                "FOREIGN KEY ("+ID_OBRA+") REFERENCES "+TABLA_OBRAS+"("+ID+"), " +
+                "FOREIGN KEY ("+ID_PRODUCTO+") REFERENCES "+TABLA_PRODUCTOS+"("+ID+") )";
+
         String CREAR_TABLA_PRESUPUESTOS = "CREATE TABLE " + TABLA_PRESUPUESTOS +" ( "+
                 ID + " INTEGER PRIMARY KEY, " +
                 PRECIO + " REAL, " +
@@ -78,6 +87,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(CREAR_TABLA_OBRAS);
         db.execSQL(CREAR_TABLA_INSUMO_PRODUCTO);
         db.execSQL(CREAR_TABLA_PRESUPUESTOS);
+        db.execSQL(CREAR_TABLA_PRODUCTO_OBRA);
     }
 
     @Override

@@ -8,13 +8,7 @@ public class Usuario implements BaseModelo{
     private int id;
     private String usuario, nombre, contrasena, correo;
 
-    public Usuario(int id, String usuario, String nombre, String contrasena, String correo) {
-        this.id = id;
-        this.usuario = usuario;
-        this.nombre = nombre;
-        this.contrasena = contrasena;
-        this.correo = correo;
-    }
+
 
     @Override
     public ContentValues toContentValues() {

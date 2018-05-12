@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import miercoles.dsl.modulo2.basedatos.DBManager;
+import miercoles.dsl.modulo2.modelos.Obra;
 import miercoles.dsl.modulo2.modelos.Usuario;
 import miercoles.dsl.modulo2.servicioweb.Mensaje;
 import miercoles.dsl.modulo2.servicioweb.ServicioWeb;
@@ -28,11 +30,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private ServicioWeb servicioWeb;
     private Button btnEntrar;
     private LinearLayout layoutProgreso;
+    private DBManager dbManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        dbManager = new DBManager(this);
 
         imgLogo = findViewById(R.id.img_logo_login);
         edtUsuario = findViewById(R.id.edt_usuario);
@@ -77,7 +81,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         Mensaje mensaje = response.body();
 
                         if(mensaje != null && mensaje.getMensaje().equals("login okay")){
-                            //Usuario usuario = mensaje.getUsuario().get(0);
+                            Usuario usuario = mensaje.getUsuario().get(0);
+
+                            dbManager.insertarModelo(usuario);
+                            for(Obra obra : mensaje.getObras()){
+                                dbManager.insertarModelo(obra);
+                            }
 
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
