@@ -41,10 +41,16 @@ public class DBManager {
             usuario.setId( cursor.getInt( cursor.getColumnIndex( ID ) ) );
             usuario.setNombre( cursor.getString( cursor.getColumnIndex( NOMBRE ) ) );
             usuario.setUsuario( cursor.getString( cursor.getColumnIndex( USUARIO ) ) );
-            usuario.setContrasena( cursor.getString( cursor.getColumnIndex( CORREO ) ) );
+            usuario.setCorreo( cursor.getString( cursor.getColumnIndex( CORREO ) ) );
         }
 
         return usuario;
+    }
+
+    public void borrarUsuario(){
+        database = dbHelper.getReadableDatabase();
+
+        database.delete(TABLA_USUARIOS, null, null);
     }
 
     public ArrayList<Obra> getObras(){

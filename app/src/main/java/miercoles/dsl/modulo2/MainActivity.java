@@ -21,6 +21,7 @@ import java.util.List;
 
 import miercoles.dsl.modulo2.adaptadores.ObrasAdapter;
 import miercoles.dsl.modulo2.basedatos.DBManager;
+import miercoles.dsl.modulo2.fragments.MiPerfilFragment;
 import miercoles.dsl.modulo2.fragments.ObrasFragment;
 import miercoles.dsl.modulo2.modelos.Obra;
 
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
     public void setupViewPager(ViewPager viewPager) {
         adapterFragments = new TabsPagerAdapter(getSupportFragmentManager());
         adapterFragments.addFragment(new ObrasFragment(), "OBRAS");
-        adapterFragments.addFragment(new Fragment(), "PERFIL");
+        adapterFragments.addFragment(new MiPerfilFragment(), "PERFIL");
         viewPager.setAdapter(adapterFragments);
     }
 
