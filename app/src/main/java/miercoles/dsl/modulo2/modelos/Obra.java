@@ -6,10 +6,10 @@ import java.util.ArrayList;
 
 import miercoles.dsl.modulo2.basedatos.DBHelper;
 
-public class Producto implements BaseModelo {
+public class Obra implements BaseModelo{
     private int id;
-    private String nombre, descripcion, unidad_medida;
-    private ArrayList<Insumo> insumos;
+    private String nombre, tipo, descripcion;
+    private ArrayList<Producto> productos;
 
     @Override
     public ContentValues toContentValues() {
@@ -17,23 +17,23 @@ public class Producto implements BaseModelo {
 
         values.put(DBHelper.ID, id);
         values.put(DBHelper.NOMBRE, nombre);
+        values.put(DBHelper.TIPO, tipo);
         values.put(DBHelper.DESCRIPCION, descripcion);
-        values.put(DBHelper.UNIDAD_MEDIDA, unidad_medida);
 
         return values;
     }
 
     @Override
     public String getNombreTabla() {
-        return DBHelper.TABLA_PRODUCTOS;
+        return DBHelper.TABLA_OBRAS;
     }
 
-    public ArrayList<Insumo> getInsumos() {
-        return insumos;
+    public ArrayList<Producto> getProductos() {
+        return productos;
     }
 
-    public void setInsumos(ArrayList<Insumo> insumos) {
-        this.insumos = insumos;
+    public void setProductos(ArrayList<Producto> productos) {
+        this.productos = productos;
     }
 
     public int getId() {
@@ -52,20 +52,20 @@ public class Producto implements BaseModelo {
         this.nombre = nombre;
     }
 
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
     public String getDescripcion() {
         return descripcion;
     }
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    public String getUnidad_medida() {
-        return unidad_medida;
-    }
-
-    public void setUnidad_medida(String unidad_medida) {
-        this.unidad_medida = unidad_medida;
     }
 
 

@@ -15,6 +15,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String TABLA_INSUMOS = "insumos";
     public static final String TABLA_OBRAS = "obras";
     public static final String TABLA_INSUMO_PRODUCTO = "insumo_producto";
+    public static final String TABLA_PRESUPUESTOS = "insumo_producto";
 
     public static final String ID = "id";
     public static final String NOMBRE = "nombre";
@@ -24,8 +25,11 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String UNIDAD_MEDIDA = "unidad_medida";
     public static final String ID_INSUMO = "id_insumo";
     public static final String ID_PRODUCTO = "id_producto";
+    public static final String ID_OBRA = "id_obra";
     public static final String CANTIDAD_INSUMO = "cantidad_insumo";
     public static final String PRECIO = "precio";
+    public static final String TIPO = "tipo";
+    public static final String FECHA = "tipo";
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -51,6 +55,7 @@ public class DBHelper extends SQLiteOpenHelper {
         String CREAR_TABLA_OBRAS = "CREATE TABLE "+TABLA_OBRAS+" ( " +
                 ID + " INTEGER PRIMARY KEY, " +
                 NOMBRE + " TEXT, " +
+                TIPO + " TEXT, " +
                 DESCRIPCION + " TEXT)";
 
         String CREAR_TABLA_INSUMO_PRODUCTO = "CREATE TABLE " + TABLA_INSUMO_PRODUCTO +" ( "+
@@ -60,11 +65,19 @@ public class DBHelper extends SQLiteOpenHelper {
                 "FOREIGN KEY ("+ID_INSUMO+") REFERENCES "+TABLA_INSUMOS+"("+ID+"), " +
                 "FOREIGN KEY ("+ID_PRODUCTO+") REFERENCES "+TABLA_PRODUCTOS+"("+ID+") )";
 
+        String CREAR_TABLA_PRESUPUESTOS = "CREATE TABLE " + TABLA_PRESUPUESTOS +" ( "+
+                ID + " INTEGER PRIMARY KEY, " +
+                PRECIO + " REAL, " +
+                FECHA + " TEXT, " +
+                ID_OBRA + " INTEGER NOT NULL, " +
+                "FOREIGN KEY ("+ID_OBRA+") REFERENCES "+TABLA_OBRAS+"("+ID+") )";
+
         db.execSQL(CREAR_TABLA_USUARIO);
         db.execSQL(CREAR_TABLA_PRODUCTOS);
         db.execSQL(CREAR_TABLA_INSUMOS);
         db.execSQL(CREAR_TABLA_OBRAS);
         db.execSQL(CREAR_TABLA_INSUMO_PRODUCTO);
+        db.execSQL(CREAR_TABLA_PRESUPUESTOS);
     }
 
     @Override

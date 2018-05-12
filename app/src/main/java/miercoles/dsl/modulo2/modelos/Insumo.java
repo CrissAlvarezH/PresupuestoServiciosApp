@@ -2,14 +2,12 @@ package miercoles.dsl.modulo2.modelos;
 
 import android.content.ContentValues;
 
-import java.util.ArrayList;
-
 import miercoles.dsl.modulo2.basedatos.DBHelper;
 
-public class Producto implements BaseModelo {
+public class Insumo implements BaseModelo{
     private int id;
-    private String nombre, descripcion, unidad_medida;
-    private ArrayList<Insumo> insumos;
+    private String nombre, descripcion, precio, unidad_medida;
+
 
     @Override
     public ContentValues toContentValues() {
@@ -17,6 +15,7 @@ public class Producto implements BaseModelo {
 
         values.put(DBHelper.ID, id);
         values.put(DBHelper.NOMBRE, nombre);
+        values.put(DBHelper.PRECIO, precio);
         values.put(DBHelper.DESCRIPCION, descripcion);
         values.put(DBHelper.UNIDAD_MEDIDA, unidad_medida);
 
@@ -25,15 +24,7 @@ public class Producto implements BaseModelo {
 
     @Override
     public String getNombreTabla() {
-        return DBHelper.TABLA_PRODUCTOS;
-    }
-
-    public ArrayList<Insumo> getInsumos() {
-        return insumos;
-    }
-
-    public void setInsumos(ArrayList<Insumo> insumos) {
-        this.insumos = insumos;
+        return DBHelper.TABLA_INSUMOS;
     }
 
     public int getId() {
@@ -60,6 +51,14 @@ public class Producto implements BaseModelo {
         this.descripcion = descripcion;
     }
 
+    public String getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(String precio) {
+        this.precio = precio;
+    }
+
     public String getUnidad_medida() {
         return unidad_medida;
     }
@@ -67,6 +66,5 @@ public class Producto implements BaseModelo {
     public void setUnidad_medida(String unidad_medida) {
         this.unidad_medida = unidad_medida;
     }
-
 
 }
