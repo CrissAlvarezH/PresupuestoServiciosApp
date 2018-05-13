@@ -53,6 +53,7 @@ public class DBManager {
         database.delete(TABLA_USUARIOS, null, null);
     }
 
+
     public ArrayList<Obra> getObras(){
         database = dbHelper.getReadableDatabase();
 

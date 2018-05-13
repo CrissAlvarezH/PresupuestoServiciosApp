@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blanco"
+    android:orientation="vertical"
+    tools:context=".ProductosActivity">
+
+    <include
+        android:id="@+id/toolbar_productos"
+        layout="@layout/toolbar" />
+
+    <ProgressBar
+        android:id="@+id/progress_productos"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_productos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar_productos" />
+
+    <LinearLayout
+        android:id="@+id/layout_reintentar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/txt_problema"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Ocurrió un problema"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btn_reintentar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="REINTENTAR" />
+
+    </LinearLayout>
+
+</RelativeLayout>

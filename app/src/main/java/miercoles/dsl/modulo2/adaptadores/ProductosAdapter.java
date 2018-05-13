@@ -44,6 +44,7 @@ public class ProductosAdapter extends RecyclerView.Adapter<ProductosAdapter.Prod
             imgLogo = itemView.findViewById(R.id.item_logo_producto);
             txtNombre = itemView.findViewById(R.id.item_nombre_producto);
             txtPrecio = itemView.findViewById(R.id.item_precio_producto);
+            txtDescripcion = itemView.findViewById(R.id.item_descripcion_producto);
             txtUniMed = itemView.findViewById(R.id.item_unidad_med_producto);
             txtCantidad = itemView.findViewById(R.id.item_txt_cantidad_producto);
 
@@ -77,10 +78,42 @@ public class ProductosAdapter extends RecyclerView.Adapter<ProductosAdapter.Prod
         holder.txtDescripcion.setText( producto.getDescripcion() );
         holder.txtPrecio.setText( "$" + producto.getPrecio() );
 
+        String unidadMedida = producto.getUnidad_medida();
+        switch (unidadMedida){
+            case "Kilogramo":
+                unidadMedida = "Kg";
+                break;
+            case "metro cubico":
+                unidadMedida = "m^3";
+                break;
+            case "metro cuadrado":
+                unidadMedida = "m^2";
+                break;
+            case "metro":
+                unidadMedida = "m";
+                break;
+        }
+
+        holder.txtUniMed.setText(unidadMedida);
+
         switch (tipo){
             case TIPO_CANTIDAD:
                 holder.imgLogo.setVisibility(GONE);
-                holder.txtCantidad.setText( producto.getCantidad() + "" );
+
+                String cantidad = producto.getCantidad() + "";
+                if(cantidad.length() > 0){
+                    if(cantidad.charAt( cantidad.length() - 1 ) == '0'){
+                        // Si el numero tiene un cero al final asumimos que terimina en .0 y se lo quitamos
+                        cantidad = cantidad.substring(0, cantidad.length() - 2);
+                    }
+
+                    // Si es mayor que cuatro caractes entonces indicamos que no cabe con unos puntos al final
+                    if(cantidad.length() > 4)
+                        cantidad = cantidad.substring(0, 3) + "..";
+
+                    holder.txtCantidad.setText( cantidad );
+                }
+
                 break;
             case TIPO_LISTAR:
                 holder.txtCantidad.setText("");
@@ -92,5 +125,19 @@ public class ProductosAdapter extends RecyclerView.Adapter<ProductosAdapter.Prod
     @Override
     public int getItemCount() {
         return productos.size();
+    }
+
+    public ArrayList<Producto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(ArrayList<Producto> productos) {
+        this.productos = productos;
+        notifyDataSetChanged();
+    }
+
+    public void agregarProducto(Producto producto){
+        productos.add(producto);
+        notifyDataSetChanged();
     }
 }

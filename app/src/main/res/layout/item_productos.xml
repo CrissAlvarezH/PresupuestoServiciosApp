@@ -27,6 +27,7 @@
                 android:textStyle="bold"
                 android:textColor="@color/blanco"
                 android:gravity="center"
+                android:lines="1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
@@ -59,7 +60,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Titulo"
-                    android:textColor="#605f5f"
+                    android:textColor="@color/negro"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -81,16 +82,19 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:textColor="@color/negro"
                     android:id="@+id/item_precio_producto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="" />
 
                 <TextView
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/colorPrimary"
                     android:id="@+id/item_unidad_med_producto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="12:04"
+                    android:text=""
                     android:textSize="16sp"
                     android:textStyle="bold" />
 

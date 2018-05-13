@@ -1,5 +1,6 @@
 package miercoles.dsl.modulo2;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,6 +21,7 @@ import miercoles.dsl.modulo2.modelos.Producto;
 
 public class AgregarObraActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private static final int COD_ADD_PRODUCTO = 243;
 
     private EditText edtNombre, edtDescripcion;
     private Spinner spnTipo;
@@ -45,9 +47,11 @@ public class AgregarObraActivity extends AppCompatActivity implements View.OnCli
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerProductos.setLayoutManager(layoutManager);
+        recyclerProductos.setNestedScrollingEnabled(false);
 
         productosAdapter = new ProductosAdapter(new ArrayList<Producto>(),
                                     new EscuchadorClick(), ProductosAdapter.TIPO_CANTIDAD);
+        recyclerProductos.setAdapter(productosAdapter);
 
         btnAgregarTrabajo.setOnClickListener(this);
         btnGuardarObra.setOnClickListener(this);
@@ -108,11 +112,32 @@ public class AgregarObraActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_agregar_producto:
-
+                Intent intent = new Intent(this, ProductosActivity.class);
+                startActivityForResult(intent, COD_ADD_PRODUCTO);
                 break;
             case R.id.btn_guardar_obra:
 
                 break;
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == RESULT_OK){
+            switch (requestCode){
+                case COD_ADD_PRODUCTO:
+                    Producto producto = (Producto) data.getSerializableExtra(ProductosActivity.ARG_PRODUCTO);
+
+                    if(producto != null){
+                        productosAdapter.agregarProducto(producto);
+
+                        txtNoTieneProd.setVisibility(View.GONE);
+                    }
+
+                    break;
+            }
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }
