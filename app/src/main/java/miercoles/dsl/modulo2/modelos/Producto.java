@@ -10,6 +10,8 @@ public class Producto implements BaseModelo {
     private int id;
     private String nombre, descripcion, unidad_medida;
     private ArrayList<Insumo> insumos;
+    private float precio, cantidad;
+
 
     @Override
     public ContentValues toContentValues() {
@@ -19,6 +21,7 @@ public class Producto implements BaseModelo {
         values.put(DBHelper.NOMBRE, nombre);
         values.put(DBHelper.DESCRIPCION, descripcion);
         values.put(DBHelper.UNIDAD_MEDIDA, unidad_medida);
+        values.put(DBHelper.PRECIO, precio);
 
         return values;
     }
@@ -26,6 +29,22 @@ public class Producto implements BaseModelo {
     @Override
     public String getNombreTabla() {
         return DBHelper.TABLA_PRODUCTOS;
+    }
+
+    public float getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(float cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public float getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(float precio) {
+        this.precio = precio;
     }
 
     public ArrayList<Insumo> getInsumos() {

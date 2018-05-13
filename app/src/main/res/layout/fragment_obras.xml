@@ -19,6 +19,7 @@
         android:layout_height="match_parent"/>
 
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btn_agregar_obra"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_margin="20dp"

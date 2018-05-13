@@ -5,7 +5,9 @@
     <color name="colorAccent">#FF4081</color>
     <color name="negro">#050505</color>
     <color name="blanco">#fff</color>
+    <color name="gris">#e6e5e5</color>
 
     <color name="verde">#058007</color>
     <color name="morado">#740457</color>
+    <color name="gris_oscuro">#434343</color>
 </resources>

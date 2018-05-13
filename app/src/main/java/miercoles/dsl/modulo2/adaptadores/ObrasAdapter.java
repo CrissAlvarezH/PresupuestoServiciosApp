@@ -96,4 +96,13 @@ public class ObrasAdapter extends RecyclerView.Adapter<ObrasAdapter.ObrasViewHol
     public int getItemCount() {
         return obras.size();
     }
+
+    public ArrayList<Obra> getObras() {
+        return obras;
+    }
+
+    public void setObras(ArrayList<Obra> obras) {
+        this.obras = obras;
+        notifyDataSetChanged();
+    }
 }

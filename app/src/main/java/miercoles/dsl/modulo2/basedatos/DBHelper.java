@@ -45,6 +45,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 ID + " INTEGER PRIMARY KEY, " +
                 NOMBRE + " TEXT, " +
                 DESCRIPCION + " TEXT, " +
+                PRECIO + " REAL, " +
                 UNIDAD_MEDIDA + " TEXT)";
 
         String CREAR_TABLA_INSUMOS = "CREATE TABLE "+TABLA_INSUMOS+" ( " +

@@ -81,7 +81,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         Mensaje mensaje = response.body();
 
                         if(mensaje != null && mensaje.getMensaje().equals("login okay")){
-                            Usuario usuario = mensaje.getUsuario().get(0);
+                            dbManager.limparBaseDatos();
+
+                            Usuario usuario = mensaje.getUsuario();
 
                             dbManager.insertarModelo(usuario);
                             for(Obra obra : mensaje.getObras()){

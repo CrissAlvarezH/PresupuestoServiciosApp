@@ -7,7 +7,7 @@ import miercoles.dsl.modulo2.modelos.Usuario;
 
 public class Mensaje {
     private String mensaje;
-    private ArrayList<Usuario> usuario;
+    private Usuario usuario;
     private ArrayList<Obra> obras;
 
     public String getMensaje() {
@@ -18,11 +18,11 @@ public class Mensaje {
         this.mensaje = mensaje;
     }
 
-    public ArrayList<Usuario> getUsuario() {
+    public Usuario getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(ArrayList<Usuario> usuario) {
+    public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
 

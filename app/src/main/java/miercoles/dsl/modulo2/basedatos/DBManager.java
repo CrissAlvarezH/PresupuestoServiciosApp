@@ -101,4 +101,16 @@ public class DBManager {
 
         return obras;
     }
+
+    public void limparBaseDatos(){
+        database = dbHelper.getWritableDatabase();
+
+        database.delete(TABLA_USUARIOS, null, null);
+        database.delete(TABLA_OBRAS, null, null);
+        database.delete(TABLA_PRODUCTOS, null, null);
+        database.delete(TABLA_INSUMOS, null, null);
+        database.delete(TABLA_PRODUCTO_OBRA, null, null);
+        database.delete(TABLA_INSUMO_PRODUCTO, null, null);
+        database.delete(TABLA_PRESUPUESTOS, null, null);
+    }
 }
