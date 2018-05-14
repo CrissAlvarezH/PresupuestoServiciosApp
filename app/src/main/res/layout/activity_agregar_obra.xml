@@ -147,12 +147,19 @@
 
             </LinearLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="40dp"
                 android:background="@color/blanco"
                 android:elevation="2dp">
+
+                <ProgressBar
+                    android:visibility="gone"
+                    android:id="@+id/progress_agregar_obra"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
                 <Button
                     android:id="@+id/btn_guardar_obra"
@@ -161,7 +168,7 @@
                     android:layout_height="wrap_content"
                     android:text="GUARDAR OBRA" />
 
-            </LinearLayout>
+            </RelativeLayout>
 
         </LinearLayout>
     </ScrollView>

@@ -20,4 +20,14 @@ public interface ServicioWeb {
     @FormUrlEncoded
     @POST(Constantes.URL_INDEX)
     Call<ArrayList<Producto>> getProductos(@Field("accion") String accion);
+
+    @FormUrlEncoded
+    @POST(Constantes.URL_INDEX)
+    Call<Mensaje> agregarObra(@Field("accion") String accion,
+                              @Field("idUsuario") String idUsuario,
+                              @Field("nombre") String nombre,
+                              @Field("descripcion") String descripcion,
+                              @Field("tipo") String tipo,
+                              @Field("idsProductos") String idsProductos,
+                              @Field("cantidades") String cantidades);
 }

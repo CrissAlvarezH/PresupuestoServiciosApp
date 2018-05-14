@@ -140,4 +140,32 @@ public class ProductosAdapter extends RecyclerView.Adapter<ProductosAdapter.Prod
         productos.add(producto);
         notifyDataSetChanged();
     }
+
+    public String getIdsProductos(){
+        if(productos.size() == 0 ) return "";
+
+        String cadena = "";
+
+        for(Producto producto : productos){
+            cadena += producto.getId() + ",";
+        }
+
+        cadena = cadena.substring(0, cadena.length() - 1);
+
+        return cadena;
+    }
+
+    public String getCantidades(){
+        if(productos.size() == 0 ) return "";
+
+        String cadena = "";
+
+        for(Producto producto : productos){
+            cadena += producto.getCantidad() + ",";
+        }
+
+        cadena = cadena.substring(0, cadena.length() - 1);
+
+        return cadena;
+    }
 }

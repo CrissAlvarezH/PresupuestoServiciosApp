@@ -11,6 +11,14 @@ public class Obra implements BaseModelo{
     private String nombre, tipo, descripcion;
     private ArrayList<Producto> productos;
 
+    public Obra(String nombre, String tipo, String descripcion) {
+        this.nombre = nombre;
+        this.tipo = tipo;
+        this.descripcion = descripcion;
+    }
+
+    public Obra(){}
+
     @Override
     public ContentValues toContentValues() {
         ContentValues values = new ContentValues();

@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,7 +18,15 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import miercoles.dsl.modulo2.adaptadores.ProductosAdapter;
+import miercoles.dsl.modulo2.basedatos.DBManager;
+import miercoles.dsl.modulo2.modelos.Obra;
 import miercoles.dsl.modulo2.modelos.Producto;
+import miercoles.dsl.modulo2.servicioweb.Mensaje;
+import miercoles.dsl.modulo2.servicioweb.ServicioWeb;
+import miercoles.dsl.modulo2.utilidades.ServicioWebUtils;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AgregarObraActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -29,6 +38,9 @@ public class AgregarObraActivity extends AppCompatActivity implements View.OnCli
     private ProductosAdapter productosAdapter;
     private TextView txtNoTieneProd;
     private Button btnGuardarObra, btnAgregarTrabajo;
+    private DBManager dbManager;
+    private ServicioWeb servicioWeb;
+    private ProgressBar progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +48,9 @@ public class AgregarObraActivity extends AppCompatActivity implements View.OnCli
         setContentView(R.layout.activity_agregar_obra);
         setToolbar();
 
+        dbManager = new DBManager(this);
+
+        progress = findViewById(R.id.progress_agregar_obra);
         txtNoTieneProd = findViewById(R.id.txt_no_tiene_prod);
         edtNombre = findViewById(R.id.edt_nombre_obra);
         edtDescripcion = findViewById(R.id.edt_descripcion_obra);
@@ -55,6 +70,8 @@ public class AgregarObraActivity extends AppCompatActivity implements View.OnCli
 
         btnAgregarTrabajo.setOnClickListener(this);
         btnGuardarObra.setOnClickListener(this);
+
+        servicioWeb = ServicioWebUtils.getServicioWeb();
     }
 
     private void setToolbar(){
@@ -116,7 +133,44 @@ public class AgregarObraActivity extends AppCompatActivity implements View.OnCli
                 startActivityForResult(intent, COD_ADD_PRODUCTO);
                 break;
             case R.id.btn_guardar_obra:
+                if(validarCampos()){
+                    btnGuardarObra.setVisibility(View.GONE);
+                    progress.setVisibility(View.VISIBLE);
 
+                    final String nombre = edtNombre.getText().toString();
+                    final String descripcion = edtDescripcion.getText().toString();
+                    final String tipo = spnTipo.getSelectedItem().toString().toLowerCase();
+
+                    Call<Mensaje> mensajeCall = servicioWeb.agregarObra("agregarObra",
+                            dbManager.getUsuario().getId()+"",
+                            nombre, descripcion, tipo,
+                            productosAdapter.getIdsProductos(),
+                            productosAdapter.getCantidades());
+
+                    mensajeCall.enqueue(new Callback<Mensaje>() {
+                        @Override
+                        public void onResponse(Call<Mensaje> call, Response<Mensaje> response) {
+                            if(response.isSuccessful()){
+                                Obra obra = new Obra(nombre, tipo, descripcion);
+                                dbManager.insertarModelo(obra);
+
+                                Toast.makeText(AgregarObraActivity.this, "Obra guardada exitosamente", Toast.LENGTH_SHORT).show();
+                                finish();
+                            }else{
+                                btnGuardarObra.setVisibility(View.VISIBLE);
+                                progress.setVisibility(View.GONE);
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<Mensaje> call, Throwable t) {
+                            Toast.makeText(AgregarObraActivity.this, "Verifique su conexion y vuelva a intentar", Toast.LENGTH_SHORT).show();
+
+                            btnGuardarObra.setVisibility(View.VISIBLE);
+                            progress.setVisibility(View.GONE);
+                        }
+                    });
+                }
                 break;
         }
     }

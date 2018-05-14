@@ -5,7 +5,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string-array name="tipos_de_obras">
-        <item>Construcción</item>
-        <item>Remodelación</item>
+        <item>Contruccion</item>
+        <item>Remodelacion</item>
     </string-array>
 </resources>
