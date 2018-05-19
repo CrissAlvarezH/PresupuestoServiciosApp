@@ -9,6 +9,7 @@ public class Mensaje {
     private String mensaje;
     private Usuario usuario;
     private ArrayList<Obra> obras;
+    private int id;
 
     public String getMensaje() {
         return mensaje;
@@ -32,5 +33,13 @@ public class Mensaje {
 
     public void setObras(ArrayList<Obra> obras) {
         this.obras = obras;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 import miercoles.dsl.modulo2.basedatos.DBManager;
 import miercoles.dsl.modulo2.modelos.Obra;
 import miercoles.dsl.modulo2.modelos.Usuario;
@@ -31,6 +33,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Button btnEntrar;
     private LinearLayout layoutProgreso;
     private DBManager dbManager;
+    private Button btnIrRegistrar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,10 +46,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         edtPass = findViewById(R.id.edt_pass);
         btnEntrar = findViewById(R.id.btn_entrar);
         layoutProgreso = findViewById(R.id.layout_progreso_login);
+        btnIrRegistrar = findViewById(R.id.btn_ir_registrar);
 
         btnEntrar.setOnClickListener(this);
+        btnIrRegistrar.setOnClickListener(this);
 
         servicioWeb = ServicioWebUtils.getServicioWeb();
+
+        Glide.with(this)
+                .load("")
+                .placeholder(R.mipmap.ic_launcher)
+                .into(imgLogo);
 
     }
 
@@ -121,6 +131,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         switch (v.getId()){
             case R.id.btn_entrar:
                 clickEntrar();
+                break;
+            case R.id.btn_ir_registrar:
+                Intent intent = new Intent(this, RegistroActivity.class);
+                startActivity(intent);
                 break;
         }
     }

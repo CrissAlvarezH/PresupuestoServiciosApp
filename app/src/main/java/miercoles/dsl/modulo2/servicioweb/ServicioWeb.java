@@ -30,4 +30,12 @@ public interface ServicioWeb {
                               @Field("tipo") String tipo,
                               @Field("idsProductos") String idsProductos,
                               @Field("cantidades") String cantidades);
+
+    @FormUrlEncoded
+    @POST(Constantes.URL_INDEX)
+    Call<Mensaje>  enviarRegistro(@Field("accion") String accion,
+                                  @Field("usuario") String usuario,
+                                  @Field("pass") String pass,
+                                  @Field("correo") String correo,
+                                  @Field("nombre") String nombre);
 }
