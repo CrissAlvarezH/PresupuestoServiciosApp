@@ -16,6 +16,8 @@ import com.bumptech.glide.Glide;
 
 import miercoles.dsl.modulo2.basedatos.DBManager;
 import miercoles.dsl.modulo2.modelos.Obra;
+import miercoles.dsl.modulo2.modelos.Producto;
+import miercoles.dsl.modulo2.modelos.ProductoObra;
 import miercoles.dsl.modulo2.modelos.Usuario;
 import miercoles.dsl.modulo2.servicioweb.Mensaje;
 import miercoles.dsl.modulo2.servicioweb.ServicioWeb;
@@ -98,6 +100,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             dbManager.insertarModelo(usuario);
                             for(Obra obra : mensaje.getObras()){
                                 dbManager.insertarModelo(obra);
+                            }
+
+                            for(Producto producto : mensaje.getProductos()){
+                                dbManager.insertarModelo(producto);
+                            }
+
+                            for(ProductoObra productoObra : mensaje.getProducto_obra()){
+                                dbManager.insertarModelo(productoObra);
                             }
 
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);

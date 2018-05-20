@@ -2,11 +2,12 @@ package miercoles.dsl.modulo2.modelos;
 
 import android.content.ContentValues;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import miercoles.dsl.modulo2.basedatos.DBHelper;
 
-public class Obra implements BaseModelo{
+public class Obra implements BaseModelo, Serializable{
     private int id;
     private String nombre, tipo, descripcion;
     private ArrayList<Producto> productos;

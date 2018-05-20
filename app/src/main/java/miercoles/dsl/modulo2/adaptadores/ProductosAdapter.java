@@ -80,16 +80,16 @@ public class ProductosAdapter extends RecyclerView.Adapter<ProductosAdapter.Prod
 
         String unidadMedida = producto.getUnidad_medida();
         switch (unidadMedida){
-            case "Kilogramo":
+            case "kilogramos":
                 unidadMedida = "Kg";
                 break;
-            case "metro cubico":
+            case "metros cubicos":
                 unidadMedida = "m^3";
                 break;
-            case "metro cuadrado":
+            case "metros cuadrados":
                 unidadMedida = "m^2";
                 break;
-            case "metro":
+            case "metros":
                 unidadMedida = "m";
                 break;
         }

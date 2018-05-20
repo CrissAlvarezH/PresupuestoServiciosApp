@@ -17,6 +17,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import miercoles.dsl.modulo2.AgregarObraActivity;
+import miercoles.dsl.modulo2.DatosObraActivity;
 import miercoles.dsl.modulo2.LoginActivity;
 import miercoles.dsl.modulo2.MainActivity;
 import miercoles.dsl.modulo2.R;
@@ -87,7 +88,11 @@ public class ObrasFragment extends Fragment {
 
         @Override
         public void clickItem(Obra obra, int posicion) {
-            Toast.makeText(getContext(), "Click en "+obra.getNombre(), Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getContext(), DatosObraActivity.class);
+            Bundle paquete = new Bundle();
+            paquete.putSerializable(DatosObraActivity.EXTRA_OBRA, obra);
+            intent.putExtras(paquete);
+            startActivity(intent);
         }
     }
 

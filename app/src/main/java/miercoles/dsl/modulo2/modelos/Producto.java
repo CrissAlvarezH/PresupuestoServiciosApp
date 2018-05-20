@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import miercoles.dsl.modulo2.basedatos.DBHelper;
 
 public class Producto implements BaseModelo, Serializable {
-    private int id;
+    private int id, id_obra;
     private String nombre, descripcion, unidad_medida;
     private ArrayList<Insumo> insumos;
     private float precio, cantidad;
@@ -30,6 +30,14 @@ public class Producto implements BaseModelo, Serializable {
     @Override
     public String getNombreTabla() {
         return DBHelper.TABLA_PRODUCTOS;
+    }
+
+    public int getId_obra() {
+        return id_obra;
+    }
+
+    public void setId_obra(int id_obra) {
+        this.id_obra = id_obra;
     }
 
     public float getCantidad() {

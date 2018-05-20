@@ -44,6 +44,8 @@ public class DBManager {
             usuario.setCorreo( cursor.getString( cursor.getColumnIndex( CORREO ) ) );
         }
 
+        cursor.close();
+
         return usuario;
     }
 
@@ -71,7 +73,7 @@ public class DBManager {
                 obra.setTipo( cursor.getString( cursor.getColumnIndex(TIPO) ) );
 
                 Cursor cPro = database.rawQuery(
-                        "SELECT "+TABLA_PRODUCTOS+".* FROM "+TABLA_PRODUCTOS+","+TABLA_PRODUCTO_OBRA+" WHERE "+ID_PRODUCTO+"="+ID+" AND "+ID_OBRA+"=?",
+                        "SELECT "+TABLA_PRODUCTOS+".* ,"+TABLA_PRODUCTO_OBRA+"."+CANTIDAD_PRODUCTO+" FROM "+TABLA_PRODUCTOS+","+TABLA_PRODUCTO_OBRA+" WHERE "+ID_PRODUCTO+"="+ID+" AND "+ID_OBRA+"=?",
                         new String[]{obra.getId()+""}
                 );
 
@@ -85,6 +87,8 @@ public class DBManager {
                         producto.setNombre( cPro.getString( cPro.getColumnIndex(NOMBRE) ) );
                         producto.setDescripcion( cPro.getString( cPro.getColumnIndex(DESCRIPCION) ) );
                         producto.setUnidad_medida( cPro.getString( cPro.getColumnIndex(UNIDAD_MEDIDA) ) );
+                        producto.setPrecio( cPro.getFloat( cPro.getColumnIndex(PRECIO) ) );
+                        producto.setCantidad( cPro.getFloat( cPro.getColumnIndex(CANTIDAD_PRODUCTO) ) );
 
                         productos.add( producto );
                     }while (cPro.moveToNext());
