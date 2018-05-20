@@ -1,10 +1,8 @@
 package miercoles.dsl.modulo2.fragments;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -14,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import miercoles.dsl.modulo2.LoginActivity;
+import miercoles.dsl.modulo2.actividades.LoginActivity;
 import miercoles.dsl.modulo2.R;
 import miercoles.dsl.modulo2.basedatos.DBManager;
 import miercoles.dsl.modulo2.modelos.Usuario;

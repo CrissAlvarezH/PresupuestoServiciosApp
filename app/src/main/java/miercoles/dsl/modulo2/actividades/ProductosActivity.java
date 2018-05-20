@@ -1,4 +1,4 @@
-package miercoles.dsl.modulo2;
+package miercoles.dsl.modulo2.actividades;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import miercoles.dsl.modulo2.R;
 import miercoles.dsl.modulo2.adaptadores.ProductosAdapter;
 import miercoles.dsl.modulo2.basedatos.DBManager;
 import miercoles.dsl.modulo2.modelos.Producto;

@@ -1,4 +1,4 @@
-package miercoles.dsl.modulo2;
+package miercoles.dsl.modulo2.actividades;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +14,7 @@ import android.widget.Toast;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import miercoles.dsl.modulo2.R;
 import miercoles.dsl.modulo2.basedatos.DBManager;
 import miercoles.dsl.modulo2.modelos.Usuario;
 import miercoles.dsl.modulo2.servicioweb.Mensaje;

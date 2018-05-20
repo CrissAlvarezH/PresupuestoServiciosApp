@@ -1,4 +1,4 @@
-package miercoles.dsl.modulo2;
+package miercoles.dsl.modulo2.actividades;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import miercoles.dsl.modulo2.R;
 import miercoles.dsl.modulo2.adaptadores.ProductosAdapter;
 import miercoles.dsl.modulo2.modelos.Obra;
 import miercoles.dsl.modulo2.modelos.Producto;

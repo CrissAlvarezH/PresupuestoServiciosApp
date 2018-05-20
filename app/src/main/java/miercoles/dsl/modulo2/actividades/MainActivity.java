@@ -1,4 +1,4 @@
-package miercoles.dsl.modulo2;
+package miercoles.dsl.modulo2.actividades;
 
 import android.content.Intent;
 import android.support.design.widget.AppBarLayout;
@@ -9,16 +9,13 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import miercoles.dsl.modulo2.R;
 import miercoles.dsl.modulo2.adaptadores.ObrasAdapter;
 import miercoles.dsl.modulo2.basedatos.DBManager;
 import miercoles.dsl.modulo2.fragments.MiPerfilFragment;

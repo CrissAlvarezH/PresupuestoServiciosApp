@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/blanco"
     android:orientation="vertical"
-    tools:context=".ProductosActivity">
+    tools:context=".actividades.ProductosActivity">
 
     <include
         android:id="@+id/toolbar_productos"

@@ -1,8 +1,6 @@
 package miercoles.dsl.modulo2.fragments;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -12,14 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import miercoles.dsl.modulo2.AgregarObraActivity;
-import miercoles.dsl.modulo2.DatosObraActivity;
-import miercoles.dsl.modulo2.LoginActivity;
-import miercoles.dsl.modulo2.MainActivity;
+import miercoles.dsl.modulo2.actividades.AgregarObraActivity;
+import miercoles.dsl.modulo2.actividades.DatosObraActivity;
 import miercoles.dsl.modulo2.R;
 import miercoles.dsl.modulo2.adaptadores.ObrasAdapter;
 import miercoles.dsl.modulo2.basedatos.DBManager;

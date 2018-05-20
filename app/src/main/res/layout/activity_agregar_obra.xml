@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/gris"
     android:orientation="vertical"
-    tools:context=".AgregarObraActivity">
+    tools:context=".actividades.AgregarObraActivity">
 
     <include
         android:id="@+id/toolbar_agregar_obra"
