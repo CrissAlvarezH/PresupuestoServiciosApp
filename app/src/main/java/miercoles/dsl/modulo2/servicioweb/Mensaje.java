@@ -3,6 +3,7 @@ package miercoles.dsl.modulo2.servicioweb;
 import java.util.ArrayList;
 
 import miercoles.dsl.modulo2.modelos.Obra;
+import miercoles.dsl.modulo2.modelos.Presupuesto;
 import miercoles.dsl.modulo2.modelos.Producto;
 import miercoles.dsl.modulo2.modelos.ProductoObra;
 import miercoles.dsl.modulo2.modelos.Usuario;
@@ -13,7 +14,16 @@ public class Mensaje {
     private ArrayList<Obra> obras;
     private ArrayList<Producto> productos;
     private ArrayList<ProductoObra> producto_obra;
+    private ArrayList<Presupuesto> presupuestos;
     private int id;
+
+    public ArrayList<Presupuesto> getPresupuestos() {
+        return presupuestos;
+    }
+
+    public void setPresupuestos(ArrayList<Presupuesto> presupuestos) {
+        this.presupuestos = presupuestos;
+    }
 
     public ArrayList<ProductoObra> getProducto_obra() {
         return producto_obra;

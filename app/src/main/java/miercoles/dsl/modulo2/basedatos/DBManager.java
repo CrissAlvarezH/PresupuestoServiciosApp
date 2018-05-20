@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import miercoles.dsl.modulo2.modelos.BaseModelo;
 import miercoles.dsl.modulo2.modelos.Obra;
+import miercoles.dsl.modulo2.modelos.Presupuesto;
 import miercoles.dsl.modulo2.modelos.Producto;
 import miercoles.dsl.modulo2.modelos.Usuario;
 
@@ -55,6 +56,31 @@ public class DBManager {
         database.delete(TABLA_USUARIOS, null, null);
     }
 
+    public ArrayList<Presupuesto> getPresupuestos(int idObra){
+        database = dbHelper.getReadableDatabase();
+
+        Cursor cursor = database.rawQuery("SELECT * FROM "+TABLA_PRESUPUESTOS+" WHERE "+ID_OBRA+"=?",
+                new String[]{idObra+""});
+
+        ArrayList<Presupuesto> presupuestos = new ArrayList<>();
+
+        if(cursor.moveToFirst()){
+            do {
+                Presupuesto presupuesto = new Presupuesto(
+                        cursor.getInt(cursor.getColumnIndex(ID)),
+                        cursor.getInt(cursor.getColumnIndex(ID_OBRA)),
+                        cursor.getFloat(cursor.getColumnIndex(PRECIO)),
+                        cursor.getString(cursor.getColumnIndex(FECHA))
+                );
+
+                presupuestos.add(presupuesto);
+            }while (cursor.moveToNext());
+        }
+
+        cursor.close();
+
+        return presupuestos;
+    }
 
     public ArrayList<Obra> getObras(){
         database = dbHelper.getReadableDatabase();

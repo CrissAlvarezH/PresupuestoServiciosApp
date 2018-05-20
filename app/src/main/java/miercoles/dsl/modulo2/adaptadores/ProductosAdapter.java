@@ -168,4 +168,16 @@ public class ProductosAdapter extends RecyclerView.Adapter<ProductosAdapter.Prod
 
         return cadena;
     }
+
+    public float calcularPrecioTotal(){
+        float precioTotal = 0f;
+
+        if(tipo == TIPO_CANTIDAD) {
+            for (Producto producto : productos) {
+                precioTotal += producto.getCantidad() * producto.getPrecio();
+            }
+        }
+
+        return precioTotal;
+    }
 }

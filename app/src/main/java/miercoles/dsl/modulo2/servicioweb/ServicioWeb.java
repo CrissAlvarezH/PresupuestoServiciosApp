@@ -38,4 +38,11 @@ public interface ServicioWeb {
                                   @Field("pass") String pass,
                                   @Field("correo") String correo,
                                   @Field("nombre") String nombre);
+
+    @FormUrlEncoded
+    @POST(Constantes.URL_INDEX)
+    Call<Mensaje> agregarPresupuesto(@Field("accion") String accion,
+                                     @Field("precio") float precio,
+                                     @Field("idObra") float idObra,
+                                     @Field("fecha") String fecha);
 }

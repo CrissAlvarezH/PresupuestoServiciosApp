@@ -101,14 +101,13 @@
                 android:elevation="2dp"
                 android:orientation="vertical"
                 android:paddingTop="10dp"
-                android:paddingRight="10dp"
-                android:paddingLeft="10dp">
+                android:paddingRight="10dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="15dp"
-                    android:layout_marginLeft="3dp"
+                    android:layout_marginLeft="13dp"
                     android:layout_marginTop="5dp"
                     android:text="Productos"
                     android:textColor="@color/colorPrimaryDark"
@@ -131,13 +130,14 @@
                 android:background="@color/blanco"
                 android:elevation="2dp"
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:paddingTop="10dp"
+                android:paddingRight="10dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="15dp"
-                    android:layout_marginLeft="3dp"
+                    android:layout_marginLeft="13dp"
                     android:layout_marginTop="5dp"
                     android:text="Presupuestos"
                     android:textColor="@color/colorPrimaryDark"
@@ -165,15 +165,31 @@
                 </RelativeLayout>
 
 
-
-                <Button
-                    android:id="@+id/btn_agregar_presupuesto"
-                    style="@style/Widget.AppCompat.Button.Borderless"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                <RelativeLayout
                     android:layout_marginTop="15dp"
-                    android:text="AGREGAR PRESUPUESTO"
-                    android:textColor="@color/colorAccent" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ProgressBar
+                        android:layout_margin="4dp"
+                        android:layout_alignTop="@id/btn_agregar_presupuesto"
+                        android:layout_alignBottom="@id/btn_agregar_presupuesto"
+                        android:visibility="gone"
+                        android:id="@+id/progress_agregar_presupuesto"
+                        android:layout_centerInParent="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <Button
+                        android:id="@+id/btn_agregar_presupuesto"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="AGREGAR PRESUPUESTO"
+                        android:textColor="@color/colorAccent" />
+
+
+                </RelativeLayout>
 
             </LinearLayout>
 
