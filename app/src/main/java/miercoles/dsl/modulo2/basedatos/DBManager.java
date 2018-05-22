@@ -51,9 +51,23 @@ public class DBManager {
     }
 
     public void borrarUsuario(){
-        database = dbHelper.getReadableDatabase();
+        database = dbHelper.getWritableDatabase();
 
         database.delete(TABLA_USUARIOS, null, null);
+    }
+
+    public void borrarObra(int idObra){
+        database = dbHelper.getWritableDatabase();
+
+        database.delete(TABLA_PRODUCTO_OBRA, ID_OBRA+"=?", new String[]{idObra + ""});
+        database.delete(TABLA_PRESUPUESTOS, ID_OBRA+"=?", new String[]{idObra + ""});
+        database.delete(TABLA_OBRAS, ID+"=?", new String[]{idObra + ""});
+    }
+
+    public void borrarPresupuesto(int idPresupuesto){
+        database = dbHelper.getWritableDatabase();
+
+        database.delete(TABLA_PRESUPUESTOS, ID+"=?", new String[]{idPresupuesto + ""});
     }
 
     public ArrayList<Presupuesto> getPresupuestos(int idObra){

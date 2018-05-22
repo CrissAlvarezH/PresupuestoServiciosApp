@@ -17,6 +17,7 @@ import miercoles.dsl.modulo2.modelos.Obra;
 public class ObrasAdapter extends RecyclerView.Adapter<ObrasAdapter.ObrasViewHolder>{
     public interface ListenerClick {
         void clickItem(Obra obra, int posicion);
+        void longClickItem(Obra obra, int posicion);
     }
 
     private ArrayList<Obra> obras;
@@ -27,7 +28,7 @@ public class ObrasAdapter extends RecyclerView.Adapter<ObrasAdapter.ObrasViewHol
         this.miListener = miListener;
     }
 
-    public class ObrasViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ObrasViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener{
         private LinearLayout layoutIcono;
         private ImageView imgLogo;
         private TextView txtNombre, txtDescripcion, txtTipo;
@@ -42,6 +43,7 @@ public class ObrasAdapter extends RecyclerView.Adapter<ObrasAdapter.ObrasViewHol
             txtTipo = itemView.findViewById(R.id.item_tipo_obra);
 
             itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
         }
 
         @Override
@@ -53,6 +55,20 @@ public class ObrasAdapter extends RecyclerView.Adapter<ObrasAdapter.ObrasViewHol
                     }
                     break;
             }
+        }
+
+        @Override
+        public boolean onLongClick(View v) {
+            switch (v.getId()){
+                case R.id.item_obra:
+                    if(miListener != null){
+                        miListener.longClickItem( obras.get( getAdapterPosition() ), getAdapterPosition() );
+                    }
+                    return true;
+            }
+
+
+            return false;
         }
     }
 

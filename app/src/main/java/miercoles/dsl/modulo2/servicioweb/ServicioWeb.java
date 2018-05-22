@@ -55,4 +55,14 @@ public interface ServicioWeb {
     @POST(Constantes.URL_INDEX)
     Call<Mensaje> getPreciosDeUnInsumo(@Field("accion") String accion,
                                        @Field("idInsumo") String idInsumo);
+
+    @FormUrlEncoded
+    @POST(Constantes.URL_INDEX)
+    Call<Mensaje> borrarObra(@Field("accion") String accion,
+                             @Field("idObra") String idObra);
+
+    @FormUrlEncoded
+    @POST(Constantes.URL_INDEX)
+    Call<Mensaje> borrarPresupuesto(@Field("accion") String accion,
+                                    @Field("idPresupuesto") String idPresupuesto);
 }
