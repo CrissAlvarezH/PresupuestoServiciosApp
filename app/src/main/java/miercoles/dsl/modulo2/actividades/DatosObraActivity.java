@@ -92,7 +92,7 @@ public class DatosObraActivity extends AppCompatActivity implements View.OnClick
                 productos = obra.getProductos();
 
                 if(productos != null) {
-                    productosAdapter = new ProductosAdapter(productos, null, ProductosAdapter.TIPO_CANTIDAD);
+                    productosAdapter = new ProductosAdapter(productos, new ListenerProductos(), ProductosAdapter.TIPO_CANTIDAD);
                     recyclerProductos.setAdapter(productosAdapter);
                 }
 
@@ -118,6 +118,19 @@ public class DatosObraActivity extends AppCompatActivity implements View.OnClick
             Toast.makeText(this, "Obra no definida", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    private class ListenerProductos implements ProductosAdapter.ListenerClick {
+
+        @Override
+        public void clickItem(Producto producto, int posicion) {
+            Intent intent = new Intent(DatosObraActivity.this, DetalleListadoActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putString(DetalleListadoActivity.TIPO, DetalleListadoActivity.TIPO_PRODUCTO);
+            bundle.putSerializable(DetalleListadoActivity.ARGS_PRODUCTO, producto);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }
     }
 
     private void setToolbar(){

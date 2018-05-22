@@ -2,7 +2,9 @@ package miercoles.dsl.modulo2.servicioweb;
 
 import java.util.ArrayList;
 
+import miercoles.dsl.modulo2.modelos.Insumo;
 import miercoles.dsl.modulo2.modelos.Obra;
+import miercoles.dsl.modulo2.modelos.Precio;
 import miercoles.dsl.modulo2.modelos.Presupuesto;
 import miercoles.dsl.modulo2.modelos.Producto;
 import miercoles.dsl.modulo2.modelos.ProductoObra;
@@ -15,7 +17,25 @@ public class Mensaje {
     private ArrayList<Producto> productos;
     private ArrayList<ProductoObra> producto_obra;
     private ArrayList<Presupuesto> presupuestos;
+    private ArrayList<Insumo> insumos;
+    private ArrayList<Precio> precios;
     private int id;
+
+    public ArrayList<Precio> getPrecios() {
+        return precios;
+    }
+
+    public void setPrecios(ArrayList<Precio> precios) {
+        this.precios = precios;
+    }
+
+    public ArrayList<Insumo> getInsumos() {
+        return insumos;
+    }
+
+    public void setInsumos(ArrayList<Insumo> insumos) {
+        this.insumos = insumos;
+    }
 
     public ArrayList<Presupuesto> getPresupuestos() {
         return presupuestos;

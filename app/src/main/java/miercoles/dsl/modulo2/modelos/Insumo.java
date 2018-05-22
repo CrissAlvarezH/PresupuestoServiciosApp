@@ -7,6 +7,7 @@ import miercoles.dsl.modulo2.basedatos.DBHelper;
 public class Insumo implements BaseModelo{
     private int id;
     private String nombre, descripcion, precio, unidad_medida;
+    private float cantidad;
 
 
     @Override
@@ -25,6 +26,14 @@ public class Insumo implements BaseModelo{
     @Override
     public String getNombreTabla() {
         return DBHelper.TABLA_INSUMOS;
+    }
+
+    public float getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(float cantidad) {
+        this.cantidad = cantidad;
     }
 
     public int getId() {

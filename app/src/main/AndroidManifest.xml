@@ -22,7 +22,8 @@
         <activity android:name=".actividades.AgregarObraActivity" />
         <activity android:name=".actividades.ProductosActivity" />
         <activity android:name=".actividades.RegistroActivity" />
-        <activity android:name=".actividades.DatosObraActivity"></activity>
+        <activity android:name=".actividades.DatosObraActivity" />
+        <activity android:name=".actividades.DetalleListadoActivity"></activity>
     </application>
 
 </manifest>

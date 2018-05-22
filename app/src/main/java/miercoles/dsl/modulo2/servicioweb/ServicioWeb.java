@@ -45,4 +45,14 @@ public interface ServicioWeb {
                                      @Field("precio") float precio,
                                      @Field("idObra") float idObra,
                                      @Field("fecha") String fecha);
+
+    @FormUrlEncoded
+    @POST(Constantes.URL_INDEX)
+    Call<Mensaje> getInsumosDeUnProducto(@Field("accion") String accion,
+                                         @Field("idProducto") String idProducto);
+
+    @FormUrlEncoded
+    @POST(Constantes.URL_INDEX)
+    Call<Mensaje> getPreciosDeUnInsumo(@Field("accion") String accion,
+                                       @Field("idInsumo") String idInsumo);
 }
