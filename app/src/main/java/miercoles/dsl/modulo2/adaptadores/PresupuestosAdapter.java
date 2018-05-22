@@ -13,13 +13,19 @@ import miercoles.dsl.modulo2.R;
 import miercoles.dsl.modulo2.modelos.Presupuesto;
 
 public class PresupuestosAdapter extends RecyclerView.Adapter<PresupuestosAdapter.PresupuestosViewHolder>{
-    ArrayList<Presupuesto> presupuestos;
-
-    public PresupuestosAdapter(ArrayList<Presupuesto> presupuestos) {
-        this.presupuestos = presupuestos;
+    public interface ListenerClick {
+        void longClickItem(Presupuesto presupuesto, int posicion);
     }
 
-    public class PresupuestosViewHolder extends RecyclerView.ViewHolder{
+    ArrayList<Presupuesto> presupuestos;
+    private ListenerClick miListener;
+
+    public PresupuestosAdapter(ArrayList<Presupuesto> presupuestos, ListenerClick miListener) {
+        this.presupuestos = presupuestos;
+        this.miListener = miListener;
+    }
+
+    public class PresupuestosViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener{
         private final TextView txtPrecio, txtFecha, txtHora;
 
         public PresupuestosViewHolder(View itemView) {
@@ -28,6 +34,22 @@ public class PresupuestosAdapter extends RecyclerView.Adapter<PresupuestosAdapte
             txtPrecio = itemView.findViewById(R.id.item_precio_presupuesto);
             txtFecha = itemView.findViewById(R.id.item_fecha_presupuesto);
             txtHora = itemView.findViewById(R.id.item_hora_presupuesto);
+
+            itemView.setOnLongClickListener(this);
+        }
+
+        @Override
+        public boolean onLongClick(View v) {
+
+            switch (v.getId()){
+                case R.id.item_presupuesto:
+                    if(miListener != null){
+                         miListener.longClickItem( presupuestos.get( getAdapterPosition() ), getAdapterPosition() );
+                    }
+                    return true;
+            }
+
+            return false;
         }
     }
 

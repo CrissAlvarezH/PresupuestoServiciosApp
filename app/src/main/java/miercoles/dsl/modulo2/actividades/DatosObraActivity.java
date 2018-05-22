@@ -37,7 +37,7 @@ import retrofit2.Response;
 
 import static android.view.View.GONE;
 
-public class DatosObraActivity extends AppCompatActivity implements View.OnClickListener{
+public class DatosObraActivity extends AppCompatActivity implements View.OnClickListener, PresupuestosAdapter.ListenerClick{
 
     public static final String EXTRA_OBRA = "obra";
     private ArrayList<Producto> productos;
@@ -94,14 +94,22 @@ public class DatosObraActivity extends AppCompatActivity implements View.OnClick
                 if(productos != null) {
                     productosAdapter = new ProductosAdapter(productos, new ListenerProductos(), ProductosAdapter.TIPO_CANTIDAD);
                     recyclerProductos.setAdapter(productosAdapter);
+                }else{
+                    productos = new ArrayList<>();
                 }
 
                 presupuestos = dbManager.getPresupuestos(obra.getId());
 
                 if(presupuestos != null){
-                    presupuestoAdapter = new PresupuestosAdapter(presupuestos);
-                    recyclerPresupuestos.setAdapter(presupuestoAdapter);
+                    if(presupuestos.size() > 0){
+                        txtNoTienePresupuestos.setVisibility(View.INVISIBLE);
+                    }else{
+                        txtNoTienePresupuestos.setVisibility(View.VISIBLE);
+                    }
                 }
+
+                presupuestoAdapter = new PresupuestosAdapter(presupuestos, this);
+                recyclerPresupuestos.setAdapter(presupuestoAdapter);
 
 
                 txtNombre.setText( obra.getNombre() );
@@ -118,6 +126,24 @@ public class DatosObraActivity extends AppCompatActivity implements View.OnClick
             Toast.makeText(this, "Obra no definida", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    @Override
+    public void longClickItem(final Presupuesto presupuesto, int posicion) {
+        AlertDialog.Builder builderAialogoAnomalia = new AlertDialog.Builder(this);
+
+        builderAialogoAnomalia.setMessage("¿Desea borrar este presupuesto?")
+                .setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        pedirBorrarPresupuesto(presupuesto.getId());
+
+                    }
+                }).setNegativeButton("NO", null);
+
+        // creamos el dialogo
+        AlertDialog dialogoAnomalia = builderAialogoAnomalia.create();
+        dialogoAnomalia.show();// mostramos el dialogo
     }
 
     private class ListenerProductos implements ProductosAdapter.ListenerClick {
@@ -161,6 +187,12 @@ public class DatosObraActivity extends AppCompatActivity implements View.OnClick
 
     private void refreshPresupuestos(){
         presupuestos = dbManager.getPresupuestos(obra.getId());
+
+        if(presupuestos.size() > 0){
+            txtNoTienePresupuestos.setVisibility(View.INVISIBLE);
+        }else{
+            txtNoTienePresupuestos.setVisibility(View.VISIBLE);
+        }
 
         presupuestoAdapter.setPresupuestos(presupuestos);
     }
@@ -225,6 +257,50 @@ public class DatosObraActivity extends AppCompatActivity implements View.OnClick
         }else{
             Toast.makeText(this, "Usted no tiene productos en esta obra", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void pedirBorrarPresupuesto(final int idPresupuesto){
+        btnAgregarPresupuesto.setVisibility(GONE);
+        progressBar.setVisibility(View.VISIBLE);
+        recyclerPresupuestos.setVisibility(GONE);
+
+        Call<Mensaje> mensajeCall = servicioWeb.borrarPresupuesto(
+                "borrarPresupuesto",
+                idPresupuesto + ""
+        );
+
+        mensajeCall.enqueue(new Callback<Mensaje>() {
+            @Override
+            public void onResponse(Call<Mensaje> call, Response<Mensaje> response) {
+                if(response.isSuccessful()){
+                    Mensaje mensaje = response.body();
+
+                    if(mensaje != null){
+                        if(mensaje.getMensaje().equals("okay")){
+                            dbManager.borrarPresupuesto(idPresupuesto);
+
+                            refreshPresupuestos();
+                        }
+                    }
+                }else{
+                    Toast.makeText(DatosObraActivity.this, "Ocurrió un error", Toast.LENGTH_SHORT).show();
+                }
+
+                btnAgregarPresupuesto.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(GONE);
+                recyclerPresupuestos.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onFailure(Call<Mensaje> call, Throwable t) {
+                t.printStackTrace();
+                Toast.makeText(DatosObraActivity.this, "Verifique su conexión", Toast.LENGTH_SHORT).show();
+
+                btnAgregarPresupuesto.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(GONE);
+                recyclerPresupuestos.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     @Override
